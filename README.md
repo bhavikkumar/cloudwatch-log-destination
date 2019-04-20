@@ -1,3 +1,8 @@
+[![Build Status](https://travis-ci.com/bhavikkumar/cloudwatch-log-destination.svg?branch=master)](https://travis-ci.com/bhavikkumar/cloudwatch-log-destination)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=cloudwatch-log-destination&metric=coverage)](https://sonarcloud.io/dashboard?id=cloudwatch-log-destination)
+[![Go Report Card](https://goreportcard.com/badge/github.com/bhavikkumar/cloudwatch-log-destination)](https://goreportcard.com/report/github.com/bhavikkumar/cloudwatch-log-destination)
+![GitHub](https://img.shields.io/github/license/bhavikkumar/cloudwatch-log-destination.svg)
+![GitHub release](https://img.shields.io/github/release/bhavikkumar/cloudwatch-log-destination.svg)
 # cloudwatch-log-destination
 
 Lambda function which sets the subscription filter on cloudwatch log groups when the log group is create or if the subscription filter is modified.
