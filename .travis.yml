@@ -57,7 +57,4 @@ deploy:
     -var lambda_version=${TRAVIS_TAG} -var operations_account_id=${OPERATIONS_ACCOUNT_ID}
     -var role_name=${ROLE_NAME} deployment >/dev/null
   skip_cleanup: true
-  on:
-    repo: bhavikkumar/cloudwatch-log-destination
-    tags: true
-    go: 1.12.x
+
