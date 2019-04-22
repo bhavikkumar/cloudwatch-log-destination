@@ -57,4 +57,5 @@ deploy:
     -var lambda_version=${TRAVIS_TAG} -var operations_account_id=${OPERATIONS_ACCOUNT_ID}
     -var role_name=${ROLE_NAME} deployment >/dev/null
   skip_cleanup: true
-
+  on:
+    all_branches: true
