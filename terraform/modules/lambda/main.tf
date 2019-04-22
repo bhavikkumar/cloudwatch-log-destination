@@ -81,7 +81,7 @@ resource "aws_cloudwatch_log_subscription_filter" "lambda" {
 
 resource "aws_lambda_function" "lambda" {
   function_name = "CloudWatchLogDestination"
-  description   = "Sets the default cloudwatch log subscription filters"
+  description   = "Sets the default cloudwatch log subscription filter"
   role          = "${aws_iam_role.lambda.arn}"
   handler       = "main"
   runtime       = "go1.x"

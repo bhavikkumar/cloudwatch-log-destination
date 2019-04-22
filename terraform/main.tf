@@ -89,51 +89,51 @@ module "lambda_master" {
     aws = "aws.master"
   }
 }
-//
-//module "lambda_identity" {
-//  source              = "./modules/lambda"
-//  lambda_version      = "${var.lambda_version}"
-//  log_destination_arn = "${data.terraform_remote_state.master.log_destination_arn}"
-//  kms_key_arn         = "${data.terraform_remote_state.master.default_kms_key_arn}"
-//  tags                = "${merge(local.common_tags, var.tags)}"
-//
-//  providers = {
-//    aws = "aws.identity"
-//  }
-//}
-//
-//module "lambda_operations" {
-//  source              = "./modules/lambda"
-//  lambda_version      = "${var.lambda_version}"
-//  log_destination_arn = "${data.terraform_remote_state.master.log_destination_arn}"
-//  kms_key_arn         = "${data.terraform_remote_state.master.default_kms_key_arn}"
-//  tags                = "${merge(local.common_tags, var.tags)}"
-//
-//  providers = {
-//    aws = "aws.operations"
-//  }
-//}
-//
-//module "lambda_development" {
-//  source              = "./modules/lambda"
-//  lambda_version      = "${var.lambda_version}"
-//  log_destination_arn = "${data.terraform_remote_state.master.log_destination_arn}"
-//  kms_key_arn         = "${data.terraform_remote_state.master.default_kms_key_arn}"
-//  tags                = "${merge(local.common_tags, var.tags)}"
-//
-//  providers = {
-//    aws = "aws.development"
-//  }
-//}
-//
-//module "lambda_production" {
-//  source              = "./modules/lambda"
-//  lambda_version      = "${var.lambda_version}"
-//  log_destination_arn = "${data.terraform_remote_state.master.log_destination_arn}"
-//  kms_key_arn         = "${data.terraform_remote_state.master.default_kms_key_arn}"
-//  tags                = "${merge(local.common_tags, var.tags)}"
-//
-//  providers = {
-//    aws = "aws.production"
-//  }
-//}
+
+module "lambda_identity" {
+  source              = "./modules/lambda"
+  lambda_version      = "${var.lambda_version}"
+  log_destination_arn = "${data.terraform_remote_state.master.log_destination_arn}"
+  kms_key_arn         = "${data.terraform_remote_state.master.default_kms_key_arn}"
+  tags                = "${merge(local.common_tags, var.tags)}"
+
+  providers = {
+    aws = "aws.identity"
+  }
+}
+
+module "lambda_operations" {
+  source              = "./modules/lambda"
+  lambda_version      = "${var.lambda_version}"
+  log_destination_arn = "${data.terraform_remote_state.master.log_destination_arn}"
+  kms_key_arn         = "${data.terraform_remote_state.master.default_kms_key_arn}"
+  tags                = "${merge(local.common_tags, var.tags)}"
+
+  providers = {
+    aws = "aws.operations"
+  }
+}
+
+module "lambda_development" {
+  source              = "./modules/lambda"
+  lambda_version      = "${var.lambda_version}"
+  log_destination_arn = "${data.terraform_remote_state.master.log_destination_arn}"
+  kms_key_arn         = "${data.terraform_remote_state.master.default_kms_key_arn}"
+  tags                = "${merge(local.common_tags, var.tags)}"
+
+  providers = {
+    aws = "aws.development"
+  }
+}
+
+module "lambda_production" {
+  source              = "./modules/lambda"
+  lambda_version      = "${var.lambda_version}"
+  log_destination_arn = "${data.terraform_remote_state.master.log_destination_arn}"
+  kms_key_arn         = "${data.terraform_remote_state.master.default_kms_key_arn}"
+  tags                = "${merge(local.common_tags, var.tags)}"
+
+  providers = {
+    aws = "aws.production"
+  }
+}
