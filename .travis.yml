@@ -1,59 +1,63 @@
 language: go
 go:
-  - 1.12.x
+- 1.12.x
 env:
   global:
-    - TF_IN_AUTOMATION=1
-    - VERSION="0.11.13"
-    - AWS_DEFAULT_REGION=us-east-1
-    - secure: trRTIxOWNxetLhRsbJmdyj+Aisnp++TLMBAfwuAEG74wxNuJQYctnWGTcIhqwAjDa5+VHVqFTbmS91Ts7dn7GdcyaRStIQtpwsaZfUH/SEf7QvadytaHXwwosqXmFggn33T2LzshXSxgyokjK2Jg2PBKE/cRA0CytfrBspaFRbp8Ae03PaJq9dUUkszkF8qRpraT5lx5qzTz4ih2H4B2G2FRb6wSuFDxEGupHUiww6aum9s16NQbgSI50RVgeYE4epiDGN+LpjgjpFsd8yP3dzlzlhioHvCmuvgFr+xo/9MieF6dWAUTOLot8HpnVwDZ2zpZUpRHAyh+kf6mMUc0JgDHBVcDiJAXYUy1zyVzsbNjYszD8vtV2/dXIh0ZOSwGzu5ec9Y76I8T9wtWiJWd0vQUx9ZHQVYWeyftcd0aoJrTzdFPA7zwoptgm8YfusHd5tYHpenBdOVkD4AgvmIvgJzZL3BBiaKLgTw17ruN7ibNZyTjeJ+90p4PHEG94RVFdyE+Xs7AQEcX40EOhpVPetcmKZVQUWLyWl60RofoVRObslvNWV0bGIp93l8LSGrc8e4oippz27abnjNwUpwhftBVmXFeOBZJixKK4oif/hYveavPB8Box61k02shnu1JJm/MsP5mqG09F/SR+PJXkGSeGXCx0iWmFQ4uhwoWhYA=
-    - secure: H2GezZMhDRIWsG5b+RV8+DTiat1J+VG1zZjqec6P5wiI7MEYXJLZseAjaR8kuI2ox2qWqLVoefUSpP/ArD9PV3pkUBxn3kuBRq326It5k5PeTYFVSdfOwM/MObYja6nz6O0lAyhu5LlojlRFQLm5ZOmTNih2r1J8x+cRsBbE2TSorJqsUZukQVUhjn2+1d0fGSi1wMmhjAwgT2GmQTU8qvsWw7mR0T/mOU9n6B4XK8GCbcWWUQGIBZsJegQy1xdkkyB+cgVKGxBxGFsve6TOU5XicJS7p0HxSfvFpd/9/aXoPlJbBzUk3Nw5Xt7TRN3J6nnbjNT0fWBAB13OQl8aQ8LwlCsp8PW9+VeV/48Mwjzs+86CRyyleMhARIAYCjHaxvrEhrtauEUluNgkwsgbPhmpGW5bjUnZB3uJr8Th20OlqQJ0JHQnPtWwrZ/mlFFZ1Q21HONiDXr3JzMb5rUyqULF2Se66ZROA+Fz82UZsWUCxZs/1ycUKN3J685RZCnNBXP3kpsAtKDxxWE1P6D9wKRGdNSfyhmO0qnp5+Q+FTk6urX6qEcr9FQi3sOIH5pjsMIpeyAuAZfgIjC7LyG/wpxtRnP1Ft95saiNU8mGQEMDXhNjHkaB101RLPufR81pbM9MJEKg70GE18iPBVFGtPAqgPjVwyJe4E1oBEuRWMY=
-    - secure: EO4AV7gAG33jlRFBPostzgMpmJyk2fZKtLldiJj+/HIVVrbkp+HSZxVWzVnXprK1ndS3ecSVPtbGXI66kWP4cSbpFtBhGp0S5ECNEO8x+NgXe+fqQ3QzQnvF+4qA2rjHJ79HozJ3UY5w8pHRd4witZ9gLgpzqRw8IWyPha52z37boFvRmnoNAonmnhIhv0nbHvFERXd8l5k2+xLwqDDIsXdn4/xGscjW1T1yCCoi38TmtfCJVRIWeDkAfTKcF2mezBDOfck1AdWnxXVpm7fX4amom/iVl4Xlos9VCaqc2JMWXdbkY49ahGZ/wg7g0ER1fpw26rkRIZlilVnEC7BeqyJTWzTaREK22In8lGmQIo0V+i5vC4P9IdvX5g2WPjflWXbOlwBuLHlA+gEm9+trmUbkIIQEabHWR2OvRbBr/87qr6nkkySIOVXBRWacNRixTddOA4IAr5+o/OG6g88C1pCaXDmD/iEyJ7olylQ3yf7G8SjPx6Wf9064hnoMh5C2eX7Jmw+HPyVHZ+1OC+a4iopVBi6bgK9uZIhz9YKnRkhuLJuvLcHmPY8y9Y+GLzXRcMNQ1cnB72TdoppAs9tWjv1eG5xVing2cgzxn17nPPSUy2RYVGHC58rjO1lSbsklo7slOxa9Tn8V3dnjO69+JscNCHw1kecCKZ7TpvIk8ik=
-    - secure: XpFnP67Yut7+CzVFv7ytP/09XbuANhZMiN71xhk33WpI7vJRFkVhH7oTF4rbC2QAy7/J2gK2YZ+iWCWDJIZMeZm8/pNbtrCmElPf97EoDwas+iAlR3FapAjVl5Il0xW/F1AO6na+AL2EZJaTqA+l7aeDu/gc4wcukZBsS5LwgKz2178M2iZy3ew4YonWLZw3Etq1ZdLrKtTJTShgLMyuv/WNjAN4P0b883J/War+vDxLRrdzPpFebFkYu1J3pAK+tCNfCEbM4dt9GYn3XBWRR+flr3VkfKGlblQ3QT2plKvdEOsqyO+SEFrzpsRRxHVoIdBYE+NbsXqQXL4YlE3YAFvDjc8RygVurur/US2SURsjoAG7HCNDgltROWN1Xwe3oEe3QufA35OYvoSu1rHQFrvsOdRC4IcIbbA3aiCZ9VcRFRsRcafFc2mSUL//fJSXSQLLdfqh1aziKskhxVE8yoxrp9/+STEQ6Yp1kV35KOsxaL4yn+DIg5TxjUR2GOjchmnuCu7fz3JQfFOYc2Xre8BZRLCeDSxGFFIJ/M3Nydopg40o4Aw1LL8jdb3QhvDUzWflg31kOstCsblHTOBs6vUGWmkOTp7vsCHA78mp6O6TPyr1B+pJUcTz1jCGlgjHIMqdF0BuldOlbqNYN+AjtjySHgfAbDmhJtVlIDgM2VU=
-    - secure: o9FAvnqyiosdL1sl+W2LU4VAw+/zZbsui3fdQdwtcBNSSO67G3PA65uge98A3tJHobqRpffiOZ9Guqh/Qzcn2p1YC7uw9H4w4OwbcD7C4cclDiHZx24btmahxq0saxrbaxHS1TK56poudzdijxVqKYYtwPkqVXT2qhNZRfNxFDH5Cz7r5gnecX58iF08Kt8hXcoBwC3a3X5WpkBW/OTkM7hONq8rMPpxW2uu99ZqZPYBhpqGKlLhWfeU9AAOfAs4ZRp0j48uMK8QWuR3G2BE9So225tcafT6iOePRypBo0TDSGm762IVY0JoiDch7ptDPj7TC10d8FpXcTnpdbX31FBCOW9dj3nTJQyrWW6K6B5P8ayWEEpx0dRjMhA0Jcxz0FhXqvwq+BTST214k+w9WL9RYMGUTN7PDXlPJU/tDtbZXkfcjwv5kG2YcyJtf1McoH6zPHcwW+tGVOFyqSfWb9hqOiK5DbvigDIH8DX76v31jI5Ife49vgDtXo69Dnl5I0EwP0rMDvYmULYGqQS4g8++tI9Fm4cP9lQvbj6+VMIxUIfDR1VkUMkq/JGBIebbVh9oB9cSHtRPMeVLxr1kTrEi5Q/3qzCMPO78a4YWHhOKw0Yj/9kSfrDpiQPSLHBW+CpGlfOQCyRpXNEz33lIL+XW2J5XnPVQukjRVDgE0qY=
-    - secure: e0r8B6zKYVhRIis2/cKeQ38l93RPmi9jz7vvYeMk7wlKkU+noLzxq6JiZ4K++efAyX9jt1jBXlFNtXxOUd/uXRlh4abeuxnVVeYjIXj/e9EK2vHpOZGrOoS4gsfEvbLmduGslMmwh3NNICTHNHQS/QCMSdrBEfSp8h7yS+m5FeON4LM08HDIIijqSfJ1nyJ4urvs5N9ufhMoShwjk0k6kqQRd00wALe5o5kG7zkBoToRhdjJbk2eBz0wPOhJ+UZeeikaZOy+wf9Cpcx98Hy3BjrdBTCapmZueoXCeDYLP2s9ccxx5iGVjUrOX6o7Ildm/5242Fh18XUG/n4HuYMIGEPpu5OintUTHQx9Ldq1/qbxZy0i9yFXBA8mfAbohaMTtkvu7sHchLeTjL9OyRnYsbiNV/0JhhJ4gTGrYnqb2mBCctSNQx+4y1vIbUVDCDQBDCZKsp2VwdSWsQjasG5Oefks6FKEOanmmniq9IGbvhTcGXrkT45YMfWXUCDx/oXL+Uq1GyOTbuFuJDz5SxNi8LafInvIhqN5kXnb4+lj6cAgHUYXX++EFk+Nr+8iQZy6eZ2HxumTVnXaJzioh05ZZlP6A3UcL4I1Oiml20oFKkSvlqu4GpPdD78gkpY60s/mDUEdJF4aWXb87O7fOlfJ8JR3SxOy0urdwlyC3gJLH6A=
+  - TF_IN_AUTOMATION=1
+  - VERSION="0.11.13"
+  - AWS_DEFAULT_REGION=us-east-1
+  - secure: CpqEazNBgah8R94o4W+E0nQW3K4m9U0nGdpwqxl2464SNMZ9OBpvQ2ycR+smjENWij6pskgkHG1wHeL8kpBXr4AOrQiQMPZe89hRCUAulg3dwFVHbfvUZHistSv8iA/eHcbI2gZGEoR721MHEYQu2Em9zSFYS/ZMMWA5kCYgihqHSljpEhINzbGg46gs3ZJ31GmKhfmt0aUhmZU/1z0l9ba/k/lBFjjbnKWQmAwqTdlQqg3LWYOF6i6kW93wVUZuZBnoTWBaMF+410krpUKy9AnV/Y3lE8SIKA4W8UvLV15amZYGLfCfqERS6co1SIXb0XrXIDcQKZ9bM2xRpLJO7lzfYkYY52/wGxveioZVGmJdKBrZwFCEZe/TUkZQKAQfIpArPkHs5Ybk3GzS+VADBpcqLbs6jI4Y5xRBeF7RIBKDaewvs1eUp41dhnnrZJEOu921hYB0VCdgJD874PeGtJcn6KptHMJKSgHekllaWeox1uY0nNsduknX1bUmbeX7UhNheXQuFYtBogT8guPdlnJaxrn9BNvClTHA9iW8fsAQEuOp4R6LhUuLmMHS9xV9A2JyRMb9aQ3XQbEBRr2D4AnVijL+O9Dy2nJmZtCbiJk+q38wZiFDKauqYtfMxdEeh2cCPh88Ga+YnpR9qMDt/Jke0P2H2mshZwNKhsTZ+k4=
+  - secure: j66iYu7QSYPXJu8B9rDKwaa8rcCE1g8XbUNaogfKj7AnWR3toXjrkNSp1S4C1jLC2IYX+wcXt7p0FR6ZuwYcWT+mWTj8QBoRfubARzFQ6vL6G8qDe/crbyG7QtGYHs5FP0gGov00lgFE5oHcYDW17021XGBCOXJ2nrzcilY8ksOcqI4+Y0mhU543+V4pnNGZJTP+173X8UvYhYeoT+1ZhGovhKjSRD93h0QLxKFWkrhDT8f467gW7p1Epqtj2RgkzFlfuiK6JGJeCDr5S3MxPvAfbw8X/JKDsfBUMMYZN2Nr34DEh7KaKT3u8A+FBHXqKvL3QyxImvxy9fRaihYENZrk1jy235jrAYELNdjWDQcz89aO6/e5eJy/BGAGxPhv3dngdCTpqlsRWOmz9R1IY+fIh1s59zqM2AAURFsLaBp125wn90tPxK9w4QGF6PZP0fPwsSDcBVz+fJ48+yFdQnaEsG8WOGTHdCRsl1uF8aNJIgdW+4my5Ca+8sRJM0Sj3t3mpYU4C+7eQ8dLAQ+uPmrlE++fcKLsEe03SIiog9CXxoFg1f+53jvup+JcqbwxLu7GbIde/HfhnVBj4GQjTgxm+KRM+8BYVhfwrvZQXwTZ82SMnGpKJXU01FQ9NG63G2zdd/61PeaIN1Dc3LmEH+MhYwgNAgBYtoRk0cFglkY=
+  - secure: owqsBKuP6DeWd5mH+I7O6UhauifL4Fe2KEL/o7Du94+06jMTGNZiSI3qrtLtmk3KAi5VvG0oytXZk/hQIPcc6csjSW+8lLQDcIyGMZkQ9yxhLwTyNsXOhImoBKw3uojYsiwygn60XzZfplbakBd5LX3vzjaCogxg5EZShT2X8e3GoZSTR4t3TE8ycBv18hRGBz0PN+W1AJJJ9cY+W90I+YvhhHek7tb8OiM7WkyCr/jWb/dzPu6tp0zKx4ti32xx+4SLXD2l5P0ThkxGIaIbkhvxsCe/cS1HrP1MEFPZDfJZalGSkMfKr/EUXzbEfIRQOA2xirmxenlQ61hvaT6+ZgI7N/2L+gAGI7PdAMwqOoTmVq8UosIH6bhJ77flfaYph3RGOCRblhwEkSih4NLycGzKRU+/tI8vDYk8L4yQCK6yP8Hjz4ylL9moiKDHqD7TA1XiOatjzIOmm+E2l7Gp3CghGi7Txg5wUAkBlLiVjquxaAZ7LI7pFcFp0JlppUBUbvYiFN6mmKL6uS9AUlmn13o7IEwOJokXCKXno/NfWD/ba4PrO9RLWTGXABNpPhygftmSIy8eKOudJAzxElLK/P67bcXatEi2RBtbIn/ImGdZt70KOE3kNMhB/LhFe4WQZJtZTZF7cVWTjWc0loBjoei22KhG2iZxZvd95q4JxHc=
+  - secure: QNbgS7Fetpsk50w98KqHfWTMTNDMnmS+fbHFyYCi34PMCQTA6iDNjwYMHPAjjQ4j+QtHhdKQVTXuDp7yeYvqASeNNaLmiU8S+3BxiIqQijCgniRYc//YBzN7mTyuSldtVJkpdwjZlVs9Ffs1AxpUvKYQpeez2cFQ7GYBiTCAJjl9nj2sIaFY6axq1XdGAuKoUIRERCVf8m3SO4aveROywDQXixd1H9EoJVaxyya1pos614v6wjU1kWHX15PfOsM20pL0c81Z6Nie/k9xv+rnN25KzFAqK+LyJTM0WCsKUAnxJc9o3mxoxVdy8sWz7duxTt9yegnKRDG2vIYLZjf8K9Z+EPlmYqFvaGk5H1zdlDviirlzovpbtXH/DltXTcLNC2CRGj2akHYNRGekIB5jZMtPusboDke3z6AVFW/yeMidxlZYHYGlrdAJicF5/efvyh+PPC88BRIkDyDY8OLOlQCT93vHx0FgwML5m3FOOoGIA8P0G4OnRwmO4cPFZK64OCJ0jUijXuW3BT80qU5mmLWXah8IhCZMCqZg8URIqaypb+PLXmyyOqRDQWrfQlz3wcGDyqNJvTQACNlM7kWIvDEaEnVWRVktE9QMbiUJ7ydzJVES/se/SU9hCGdsMkckA2yGw2GoQ6NYWHesOyECDa1QB1opFexhTkk9lDMreLQ=
+  - secure: RWln/JBJTXD9mFo6UyU4RSdcQTc3LRtUUdxJh2AHrUI99M9yE9mz6kG7Brxr4n8Bsug41aXsn9IrdRCby7YCWwjaXrFA/qCeixZg4aX4lFc/pLB9E9am/SGN+1CKFaaUotpIq+UQdugPb2iJUD3SEoskfOPKbUy3U7q/kJMevt+nrvNdu5O9OyoP7m5KAAk1SXysUqR+GHbKeqXxDov8+vEoQTZ/gWG/Q7CcwdTHjRb8ScxIFaPdSGPXC0gwg2UO06fV86ZzAN5lCptGVoH72ODbCQm3mLUo/VWvf/kr7F/8COgKcUkpPL5L/8wIrA1055UUDPj8OaY81xnMMi7RFxdUuBMLLQ6P8zvULw//lTnwOq1JQehC3LpX46QKKpr7zylYd7wgkGfRmCpKvfyhWlJoClS1nXcRlgE43oZ3TMjGD1x6pcJCoUNrXlebErlGZo+AfCCg+j8a8DKJ1FRmBcIu2A4495PEPmya7tT82csfI0S+9Z4cuCloyjSrQBk7iJEuEMZ1WQjDgjwSKZl22Szjz2vLcCTqkPrP5TpHU+eQfI5gbmTHGkZuNaBRBhNthCmsRQqYaOI4/S1O1fIiOsk9PZB6CRlhDQhbDLxCgGBW/r5w11CtxlyegasY5mMVqRBHKF7A45oGb0J8SXTNwlsZQvRcca71xpgcy9PtHXo=
+  - secure: VGEyx3SVy0HhEXgvob6SurZGa51o9OxNIp1Csdy6aE9NDy+Bd0oKreaM7gv22Ccjjcbbk3f8oSmc1UvVoIeFRLmB/HwiSOky7b+N0DTW765ZMyGbTUqh/+kNPJgc4x3AYGtJqKYnCrFQJxsA2Y8A/LDLgA6r9A7l7M6gMhBvxVqbq6baeFRL1LjRhiUW8pTMes+Rzc6QkJ3qs+VtsYpC63bc3gonB106LwogsXyfKM5SXvDdeaQeNkvQ1gDtHGn4f35POcZ6lTw+9FUxD9SUWvZF/Bs4esuMS0xXMgEvH41EU+CICP6UOZtZBfXNUIQOvOreOhlyFN+P+FYFsvssE34Be5qTvxEMaluxpTke7+zuan0MMt6xbWwV2AD/F2QyB3s0CD2hsm2c6H8Zk9HfVC++AFeyl7uSubeTXKUeDOCj1TpajzK2kTvO3uJbYWsnkFslbKQEZidieA5eZ7HTob6P6l4LYR+jX64mMhLA8T0I0hui7n10sxqcKOnQdWBPtq3S4kKo+v/kGI+o9ljHfp/06DUTGUKEc9RXdsWq+T1TQhBVI8rInt1Kfvoz+v5qZCLJehwWzqRZ8ChIk6sJ2rsPvzvNI06mcEeAjQjpD4VGfALRRq24QxuofEAnal+2dEsbU7UlHz4ZCyUEYKSHjXhPjyTQJ68Hil5YPmBX8lk=
   matrix:
-    - GO111MODULE=on GOOS=linux GOARCH=amd64
+  - GO111MODULE=on GOOS=linux GOARCH=amd64
 matrix:
   allow_failures:
-    - go: tip
+  - go: tip
   fast_finish: true
 cache:
   directories:
-    - "$HOME/.sonar/cache"
+  - "$HOME/.sonar/cache"
 addons:
   sonarcloud:
     organization: bhavikkumar-github
     token:
       secure: c5v4OvSRZ7D5z00vE03z/ZvmB7jgf0GZUdRs7C4YZdW1CgxtQkg7pOdIxNO2P01n+awxXFQLgdNQYiLtoJzmGFDVdq+Jdxfp5eplnXMN3M8PC3TwuvZJRdQU3w6ar0dW2sfJAgq3WgCPbfN/9S27vsZaYUSsREox6mVJi4PiKUw4U2P767w8SolpfE6NV3MUnbzdLAtVgV5nn/4Q22T5BAEp6bM6gvPfJdPhfCYqKFysTf/ViZiWP5jfud2rbmmn+Ply7uZ5auoyj2t/nAQiK1uIr8qzvk7A2PRw5HggEgSGMIjTqGzG5ie0tSMr9INdAEUsVNDuVdGNq2/yUR+FQVDyJqbsPIhhwDIiUDncgXPZ/3F7e+2ySqbSR7ljfhjroIjj62Gwq8lBZvQYjURvZUmR6Td0YaHWo1mXg4eYOV39ndI1okYRpEForTbweZ+JVTE7IJQmRFJHiXW7BUXr1Joxd4KCvxtwxwhsqXqvg1fn8smtx5QI2d509HehnUA0BHMvzEXlBqPoT4l9H4AjCYJ38SjJIuzgQXfjeA98gICA5wPpfipG0RDSUgiQavPpst8AzhIUTlwTLehf7cd4NhvkDejOyPAZMNLi0yHhxEwoEU7kYU6fiyfBLvIv8FqkZSbakRDdXJlBPGKYl8OCvcR6YPIJ+gTTvLva0QGuORA=
 install:
-  - go mod download
-  - go build -ldflags="-s -w" -o main main.go
+- go mod download
+- go build -ldflags="-s -w" -o main main.go
 script:
-  - go vet ./... 2> govet-report.out
-  - go test ./... -coverprofile=coverage.out -json > report.json
+- go vet ./... 2> govet-report.out
+- go test ./... -coverprofile=coverage.out -json > report.json
 after_success:
-  - sonar-scanner
-  - zip cloudwatch-log-destination$TRAVIS_TAG.zip main
+- sonar-scanner
+- zip cloudwatch-log-destination$TRAVIS_TAG.zip main
 before_deploy:
-  - wget https://releases.hashicorp.com/terraform/${VERSION}/terraform_${VERSION}_linux_amd64.zip
-  - unzip terraform_${VERSION}_linux_amd64.zip
-  - chmod +x terraform
-  - ./terraform init -backend-config="bucket=terraform.bhavik.io" -backend-config="region=${AWS_DEFAULT_REGION}" -backend-config="dynamodb_table=terraform-state" -backend-config="kms_key_id=${KMS_KEY_ID}" -backend-config="role_arn=${ROLE_ARN}" deployment >/dev/null
+- wget https://releases.hashicorp.com/terraform/${VERSION}/terraform_${VERSION}_linux_amd64.zip
+- unzip terraform_${VERSION}_linux_amd64.zip
+- chmod +x terraform
+- ./terraform init -backend-config="bucket=terraform.bhavik.io" -backend-config="region=${AWS_DEFAULT_REGION}"
+  -backend-config="dynamodb_table=terraform-state" -backend-config="kms_key_id=${KMS_KEY_ID}"
+  -backend-config="role_arn=${ROLE_ARN}" deployment >/dev/null
 deploy:
-  - provider: releases
-    api_key:
-      secure: fiqhQ8z2ts/2/6KxNMsvcN2vdVjRAjclCcFjBxSDdLSulgD2bTa4Fb9OvjLAVhU01Y30e2eoFZ9AVQDeHGibLVisQNHFZlZK0ic6Xr5sK1Jmm50uPDVUE7J1tA+0G25KxavH6dxDUZ/Ict+TvQfZMFRO7hnVZgAnRvqrYd3UfDt0BHZj/ZJobTwgK0Is8Dv996wpj17SWtVzQk9okIsTmqQRD4mO90222I0mlu8kmTfp7edbAy4ZJOStI9m4KBJcD0YGUJrH3XUC27YXLBlThYn9pdYXrSZiAdGnOdtKJeXQydyiAnCDDTJx+EmlsQpOgRUt7ytDKVE3huonvGVyeOCQ3WepGRhhBuBCBLReH2Md1Si5D7F2xCX+4q+m4ES9kYoaK62o1nwhZD+/JkjqgkgYS3z+6+QbY8fa6uITihnwsFZP+yFLPVrKoCxiI4E1LO2AVTEflWPgRFnTFGxRYjrKVd/cT4hZB5GLu/DVlw4fMTYcJS7+Ylv9b89SMQkEP+2zppzLIH4H+011gA4L4nN0xyCvstT0xNFS8xO8J3+EG0mx7wx/uCopOZjPc67lCbl8Pfno+UWUXMkUxo4paDPIb32C0Eoz/fKuGdWNMdznii0jBi9LGQe/8slEBUHGBuM/KN54qhZKHgS0Sd9bBOTI/8FKQyAdK1vQiRt8org=
-    file: cloudwatch-log-destination$TRAVIS_TAG.zip
-    skip_cleanup: true
-    on:
-      repo: bhavikkumar/cloudwatch-log-destination
-      tags: true
-      go: 1.12.x
-  - provider: script
-    script: ./terraform apply -backup="-" -input=false -auto-approve -var aws_default_region=${AWS_DEFAULT_REGION} -var lambda_version=${TRAVIS_TAG} -var operations_account_id=${OPERATIONS_ACCOUNT_ID} -var role_name=${ROLE_NAME} deployment >/dev/null
-    skip_cleanup: true
-    on:
-      repo: bhavikkumar/cloudwatch-log-destination
-      tags: true
-      go: 1.12.x
+- provider: releases
+  api_key:
+    secure: fiqhQ8z2ts/2/6KxNMsvcN2vdVjRAjclCcFjBxSDdLSulgD2bTa4Fb9OvjLAVhU01Y30e2eoFZ9AVQDeHGibLVisQNHFZlZK0ic6Xr5sK1Jmm50uPDVUE7J1tA+0G25KxavH6dxDUZ/Ict+TvQfZMFRO7hnVZgAnRvqrYd3UfDt0BHZj/ZJobTwgK0Is8Dv996wpj17SWtVzQk9okIsTmqQRD4mO90222I0mlu8kmTfp7edbAy4ZJOStI9m4KBJcD0YGUJrH3XUC27YXLBlThYn9pdYXrSZiAdGnOdtKJeXQydyiAnCDDTJx+EmlsQpOgRUt7ytDKVE3huonvGVyeOCQ3WepGRhhBuBCBLReH2Md1Si5D7F2xCX+4q+m4ES9kYoaK62o1nwhZD+/JkjqgkgYS3z+6+QbY8fa6uITihnwsFZP+yFLPVrKoCxiI4E1LO2AVTEflWPgRFnTFGxRYjrKVd/cT4hZB5GLu/DVlw4fMTYcJS7+Ylv9b89SMQkEP+2zppzLIH4H+011gA4L4nN0xyCvstT0xNFS8xO8J3+EG0mx7wx/uCopOZjPc67lCbl8Pfno+UWUXMkUxo4paDPIb32C0Eoz/fKuGdWNMdznii0jBi9LGQe/8slEBUHGBuM/KN54qhZKHgS0Sd9bBOTI/8FKQyAdK1vQiRt8org=
+  file: cloudwatch-log-destination$TRAVIS_TAG.zip
+  skip_cleanup: true
+  on:
+    repo: bhavikkumar/cloudwatch-log-destination
+    tags: true
+    go: 1.12.x
+- provider: script
+  script: ./terraform apply -backup="-" -input=false -auto-approve -var aws_default_region=${AWS_DEFAULT_REGION}
+    -var lambda_version=${TRAVIS_TAG} -var operations_account_id=${OPERATIONS_ACCOUNT_ID}
+    -var role_name=${ROLE_NAME} deployment >/dev/null
+  skip_cleanup: true
+  on:
+    repo: bhavikkumar/cloudwatch-log-destination
+    tags: true
+    go: 1.12.x
