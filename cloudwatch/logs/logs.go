@@ -16,6 +16,7 @@ type requestParameters struct {
 
 type CloudWatchLog struct {
 	LogGroupName   string `json:"logGroupName"`
+	FilterName     string `json:"filterName"`
 	DestinationArn string `json:"destinationArn"`
 }
 
@@ -49,7 +50,7 @@ func (cwLog *CloudWatchLog) parseCloudWatchEvent(event events.CloudWatchEvent) {
 	cwLog.DestinationArn = requestParameters.CloudWatchLog.DestinationArn
 }
 
-func (cwLog *CloudWatchLog) UpdateLogDestination(client cloudwatchlogsiface.CloudWatchLogsAPI, destinationArn string) (err error) {
+func (cwLog *CloudWatchLog) UpdateSubscriptionFilter(client cloudwatchlogsiface.CloudWatchLogsAPI, destinationArn string) (err error) {
 	var filterName = "DefaultLogDestination"
 	var filterPattern = ""
 	var distribution = cloudwatchlogs.DistributionByLogStream
@@ -61,5 +62,14 @@ func (cwLog *CloudWatchLog) UpdateLogDestination(client cloudwatchlogsiface.Clou
 		Distribution:   &distribution,
 	}
 	_, err = client.PutSubscriptionFilter(input)
+	return
+}
+
+func (cwLog *CloudWatchLog) DeleteSubscriptionFilter(client cloudwatchlogsiface.CloudWatchLogsAPI, filterName string) (err error) {
+	input := &cloudwatchlogs.DeleteSubscriptionFilterInput{
+		LogGroupName: &cwLog.LogGroupName,
+		FilterName:   &filterName,
+	}
+	_, err = client.DeleteSubscriptionFilter(input)
 	return
 }

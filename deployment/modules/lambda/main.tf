@@ -72,7 +72,7 @@ resource "aws_cloudwatch_log_group" "lambda" {
 }
 
 resource "aws_cloudwatch_log_subscription_filter" "lambda" {
-  name            = "default_log_destination"
+  name            = "DefaultLogDestination"
   log_group_name  = "${aws_cloudwatch_log_group.lambda.name}"
   filter_pattern  = ""
   destination_arn = "${var.log_destination_arn}"

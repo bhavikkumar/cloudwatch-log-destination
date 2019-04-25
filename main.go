@@ -26,9 +26,18 @@ func HandleRequest(event events.CloudWatchEvent) error {
 	if err != nil {
 		return err
 	}
+
+	session := session.Must(session.NewSession())
+	if cwLog.DestinationArn != defaultDestinationArn && cwLog.FilterName != "" {
+		err = cwLog.DeleteSubscriptionFilter(cloudwatchlogs.New(session), cwLog.FilterName)
+		if err != nil {
+			log.Warn("Could not delete subscription filter", err)
+			return err
+		}
+	}
+
 	if cwLog.DestinationArn != defaultDestinationArn {
-		session := session.Must(session.NewSession())
-		return cwLog.UpdateLogDestination(cloudwatchlogs.New(session), defaultDestinationArn)
+		return cwLog.UpdateSubscriptionFilter(cloudwatchlogs.New(session), defaultDestinationArn)
 	}
 	return nil
 }

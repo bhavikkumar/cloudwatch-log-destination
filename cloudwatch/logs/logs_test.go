@@ -61,15 +61,26 @@ func TestNewCloudWatchLogFromEvent(t *testing.T) {
 
 func TestUpdateSubscriptionFilter(t *testing.T) {
 	cloudWatchLog := logs.CloudWatchLog{LogGroupName: "test", DestinationArn: "arn:test"}
-	err := cloudWatchLog.UpdateLogDestination(mockPutSubscriptionFilter{}, "arn:test")
+	err := cloudWatchLog.UpdateSubscriptionFilter(mockCloudWatchLogs{}, "arn:test")
 	assert.NoError(t, err)
 }
 
-type mockPutSubscriptionFilter struct {
-	cloudwatchlogsiface.CloudWatchLogsAPI
-	Resp cloudwatchlogs.PutSubscriptionFilterOutput
+func TestDeleteSubscriptionFilter(t *testing.T) {
+	cloudWatchLog := logs.CloudWatchLog{LogGroupName: "test", DestinationArn: "arn:test"}
+	err := cloudWatchLog.UpdateSubscriptionFilter(mockCloudWatchLogs{}, "arn:test")
+	assert.NoError(t, err)
 }
 
-func (m mockPutSubscriptionFilter) PutSubscriptionFilter(in *cloudwatchlogs.PutSubscriptionFilterInput) (*cloudwatchlogs.PutSubscriptionFilterOutput, error) {
-	return &m.Resp, nil
+type mockCloudWatchLogs struct {
+	cloudwatchlogsiface.CloudWatchLogsAPI
+	PutSubResp    cloudwatchlogs.PutSubscriptionFilterOutput
+	DeleteSubResp cloudwatchlogs.DeleteSubscriptionFilterOutput
+}
+
+func (m mockCloudWatchLogs) PutSubscriptionFilter(in *cloudwatchlogs.PutSubscriptionFilterInput) (*cloudwatchlogs.PutSubscriptionFilterOutput, error) {
+	return &m.PutSubResp, nil
+}
+
+func (m mockCloudWatchLogs) DeleteSubscriptionFilter(in *cloudwatchlogs.DeleteSubscriptionFilterInput) (*cloudwatchlogs.DeleteSubscriptionFilterOutput, error) {
+	return &m.DeleteSubResp, nil
 }
