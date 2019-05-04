@@ -1,3 +1,8 @@
+variable "account_id" {
+  type        = "string"
+  description = "The AWS Account ID where the lambda function should be deployed"
+}
+
 variable "aws_default_region" {
   type        = "string"
   default     = "us-east-1"
@@ -20,9 +25,14 @@ variable "profile" {
   description = "The AWS profile which terraform will use"
 }
 
+variable "log_retention_period" {
+  description = "The number of days to retain the logs for in CloudWatch"
+  default     = 14
+}
+
 variable "role_name" {
   type        = "string"
-  description = "The role which terraform will assume into the operations account"
+  description = "The role which terraform will assume in to the AWS accounts"
 }
 
 variable "tags" {
