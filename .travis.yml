@@ -39,13 +39,12 @@ deploy_lambda_stage: &deploy_lambda_stage
   go: 1.12.x
   script: skip
   before_deploy:
+    - wget https://releases.hashicorp.com/terraform/${VERSION}/terraform_${VERSION}_linux_amd64.zip
+    - unzip -o terraform_${VERSION}_linux_amd64.zip
+    - chmod +x terraform
     - ./terraform init -backend-config="bucket=terraform.bhavik.io" -backend-config="region=${AWS_DEFAULT_REGION}" -backend-config="dynamodb_table=terraform-state" -backend-config="kms_key_id=${KMS_KEY_ID}" -backend-config="role_arn=${ROLE_ARN}" deployment >/dev/null
   deploy:
     <<: *deploy_lambda
-before_install:
-- wget https://releases.hashicorp.com/terraform/${VERSION}/terraform_${VERSION}_linux_amd64.zip
-- unzip -o terraform_${VERSION}_linux_amd64.zip
-- chmod +x terraform
 install:
 - go mod download
 - go build -ldflags="-s -w" -o main main.go
