@@ -72,7 +72,7 @@ jobs:
         go: 1.12.x
   - stage: Deploy to Development
     <<: *deploy_lambda_stage
-    if: tag IS present OR tag IS blank
+    if: type != pull_request
     env:
     - TF_WORKSPACE=development
     - secure: JwkF+FReR42LjM/azgdNXKMeCa8Kd9LeaBAOyqtmmHXZRVCnskBv/q4cz9x9AueAso3eYRKgicUPg6a1wpcwAZ+LXQmjVKPPh9pXNzt47TsBpE/HCRgqWXLxl/mxMxHTqK67FGGEUeyTDoaQ7A+SyEfOJJstdJsty7OHNF7K3A8h7bb3FXDB2yfAy3fyAn6C5n+MkO3Wa9Ja3g3+ukdPJV45O4dJJ+RKfiHYUnrEaburmKqPmvGbFZxYo6yULSMf9K8sg1V0A2N+94+5R/kbnfoiPJrLAmKunzIlC+A2MtnQgfyiZxJZBHKw+mJoDNQY5TNks7YnViLB+dGsq2JxaHmeLxd5kKRcbB9LzZJ7g6WYQZ9Wt1kTYt3QShZKrz8rSH5vO9OYXclZiYJFuPVtLYm5gRR+EC11tX9V+KFF+MhhSC78ZF0/AhyNYJEhtXAGxnMeT1p1QBUA/A2phooy63UNUa2Y5Jy+AZrxSzNurIpd67NDBDiyJFg/LlUwHlfGWv8A6qqEIeos9NOVrmw/xKIwm9JhVQ50vL9kY7H6w/ICWT8ZFUrG1Zkuv30Ny8pTTrm/Ta9+fMbI2bpq5Duv56HuvaBl2q7NLF5pb3Osy5nPoxBhIl3fEuexKA7oXbzDdQcXfyXcwo9XIFccmscGXDNKjpdOnXLrp+If7z4LFWA=
