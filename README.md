@@ -15,7 +15,7 @@ Preparing a binary to deploy to AWS Lambda requires that it is compiled for Linu
 ``` shell
 # Remember to build your handler executable for Linux!
 GOOS=linux GOARCH=amd64 go build -o main main.go
-zip main.zip main
+zip cloudwatch-log-destination.zip main
 ```
 
 ## For developers on Windows
@@ -35,7 +35,7 @@ set GOOS=linux
 set GOARCH=amd64
 set CGO_ENABLED=0
 go build -o main main.go
-%USERPROFILE%\Go\bin\build-lambda-zip.exe -o main.zip main
+%USERPROFILE%\Go\bin\build-lambda-zip.exe -o cloudwatch-log-destination.zip main
 ```
 
 in Powershell:
@@ -44,5 +44,18 @@ $env:GOOS = "linux"
 $env:GOARCH = "amd64"
 $env:CGO_ENABLED = "0"
 go build -o main main.go
-~\Go\Bin\build-lambda-zip.exe -o main.zip main
+~\Go\Bin\build-lambda-zip.exe -o cloudwatch-log-destination.zip main
 ```
+
+## Terraform Deployment
+
+The Terraform deployment is dependent on [Terraform Master](https://github.com/bhavikkumar/terraform-master) project for certain variables such as the KMS Key to use. This Terraform project uses workspaces to deploy in to different environments therefore the appropriate workspace should be selected first.
+ 
+The first thing to do is move the Lambda zip file to the deployment folder. Then run the following commands to deploy the Lambda function.
+ ```
+terraform init "-backend-config=backend.tfvars"
+terraform workspace select development
+terraform plan "-var-file=master.tfvars"
+terraform apply "-var-file=master.tfvars"
+```
+
