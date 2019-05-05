@@ -67,7 +67,7 @@ func TestUpdateSubscriptionFilter(t *testing.T) {
 
 func TestDeleteSubscriptionFilter(t *testing.T) {
 	cloudWatchLog := logs.CloudWatchLog{LogGroupName: "test", DestinationArn: "arn:test"}
-	err := cloudWatchLog.UpdateSubscriptionFilter(mockCloudWatchLogs{}, "arn:test")
+	err := cloudWatchLog.DeleteSubscriptionFilter(mockCloudWatchLogs{}, "arn:test")
 	assert.NoError(t, err)
 }
 
