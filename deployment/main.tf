@@ -125,6 +125,7 @@ resource "aws_lambda_function" "lambda" {
   kms_key_arn   = "${data.terraform_remote_state.master.default_kms_key_arn}"
   filename      = "cloudwatch-log-destination${var.lambda_version}.zip"
   publish       = true
+  source_code_hash = "${filebase64sha256(format("cloudwatch-log-destination%s.zip", var.lambda_version))}"
 
   environment {
     variables = {
