@@ -37,6 +37,7 @@ deploy_lambda: &deploy_lambda
     tags: true
     go: 1.12.x
 deploy_lambda_stage: &deploy_lambda_stage
+  go: 1.12.x
   script: skip
   before_deploy:
     - ./terraform init -backend-config="bucket=terraform.bhavik.io" -backend-config="region=${AWS_DEFAULT_REGION}"
@@ -78,10 +79,28 @@ jobs:
     env:
     - TF_WORKSPACE=development
     - secure: JwkF+FReR42LjM/azgdNXKMeCa8Kd9LeaBAOyqtmmHXZRVCnskBv/q4cz9x9AueAso3eYRKgicUPg6a1wpcwAZ+LXQmjVKPPh9pXNzt47TsBpE/HCRgqWXLxl/mxMxHTqK67FGGEUeyTDoaQ7A+SyEfOJJstdJsty7OHNF7K3A8h7bb3FXDB2yfAy3fyAn6C5n+MkO3Wa9Ja3g3+ukdPJV45O4dJJ+RKfiHYUnrEaburmKqPmvGbFZxYo6yULSMf9K8sg1V0A2N+94+5R/kbnfoiPJrLAmKunzIlC+A2MtnQgfyiZxJZBHKw+mJoDNQY5TNks7YnViLB+dGsq2JxaHmeLxd5kKRcbB9LzZJ7g6WYQZ9Wt1kTYt3QShZKrz8rSH5vO9OYXclZiYJFuPVtLYm5gRR+EC11tX9V+KFF+MhhSC78ZF0/AhyNYJEhtXAGxnMeT1p1QBUA/A2phooy63UNUa2Y5Jy+AZrxSzNurIpd67NDBDiyJFg/LlUwHlfGWv8A6qqEIeos9NOVrmw/xKIwm9JhVQ50vL9kY7H6w/ICWT8ZFUrG1Zkuv30Ny8pTTrm/Ta9+fMbI2bpq5Duv56HuvaBl2q7NLF5pb3Osy5nPoxBhIl3fEuexKA7oXbzDdQcXfyXcwo9XIFccmscGXDNKjpdOnXLrp+If7z4LFWA=
-    go: 1.12.x
-    script: skip
     deploy:
       <<: *deploy_lambda
       on:
         all_branches: true
         go: 1.12.x
+  - stage: Deploy to Master
+    <<: *deploy_lambda_stage
+    env:
+      - TF_WORKSPACE=master
+      - secure: JVuRwMH1vw21w3wKtxDzaOfQ1gzL8j7aMlz6IUrJ2NypYFMRgNrmbcsx1uk0Fn8iiZweXv9tfWWZHKYmi4EvgDTIbjd6IlQce08kud/Z8djIJ9LMlO+jHFp7OB1ATlrpIllh4E791rtyFh40L861I0Gk2Wo0AdbFKEPEAt/SckgkOT4McIGFYCKznAboC0P+fUubk4hy+9wv7TZ9aa8zsLwMv53jRzBKy405wnITW49yd/sqHNkA9x1GasPodz2TE12mXZaELdpGfgHpYnsI+diVXsr9d9qLi42IJr2FjKfO0ZCUax7a1odqfl2RPelfkJ1dEoHMDDqXAiqMLqp4LSFVX6JP+dAhgJPaB+w/0woPrn7ZDAv0gVp7T5UKKWYLLOQ8SxM72lWWTbT+UBw7rvDr+Z1FUmjZE55V9sjCwdV8IOwbw9E9bKCF0aEN1BNaA13Q73e6daXnTPa8D9TF+eTSuobmkZ5j7M7Naw0etDpZ2zu0BvbuYDM3y1dD0PAukROBQWKvKzkbzgUZG4960m9G4j+qW4qaP+DxEbVdarIOIq8bLO6K6MGxlSCO4myp33/uPQXhMaeeld/dOLpVk7iVBe2c5If3J+bbg6qImD7rvyRL1tOaCUGZ3OIDUUliS31m1m1wzwNjHryN1hZW/olcyclgzOgQBzl+WPsuwcE=
+  - stage: Deploy to Identity
+    <<: *deploy_lambda_stage
+    env:
+      - TF_WORKSPACE=identity
+      - secure: tShL7XGoXP+xfs9qtlRd6Yn9MAjrqOB6t9v5GecMgNBw7tkbtxyIZBJP/+0r7Vn93B5XydM64R2uVOH+AZoYDuZ9fLT4NAmOR53P4ysUBXuY/ULksRW0+TuCLEeYfONJb3eMk7yBtalRxVCvVMKF/OilA0TSjY426y02g4nQdzpYocipCVp7BrAK5JBn0Pn2Z0aZ0avuLDqqltzFPRWW949DTAakaxLNihJufyKCL+YMtJcrQQS9qnIdGxXy6Xc5k+VZgbLl8L5d4eS2T5F5QcsFqlxU0dljABq3V2h/HmRNy+Y2yGRp7reVyU7RpZrWh4r3gtcnjo/tkXRLNGoaj7UDA7SFSQAUyKp4RMNHKiYSFfzCcO5as+0zGKDsH4YkADeFzjPT3kMU4XtIU3WdaUKNtjUj/yeRYmnYw9DUXh2wGsAOTPerS/oEecK4Bk6NBcFSsVt4nisG/zDE6alQ+5cLhHW0SMYb+Tbg+ceYvx9MXGBGQsWyjV/etlQJFu+F1NTXj9Os2GIiDgGoQL4soTB284Z/sDy76CMFivkUdCYrQhuELuTMULAju+fKw2EzuerBEQMv8Ti4FSbpqddaM3n82dvEWco40EqZyyTf19lrCZjxm0k8Xz7+43nZ8tT+m+HLtKpg13mztJ38EbfTuc1vVuV+bIyJ3qtPzxNjqFw=
+  - stage: Deploy to Operations
+    <<: *deploy_lambda_stage
+    env:
+      - TF_WORKSPACE=operations
+      - secure: be0fPruKCzahpu7EKpSgv9FK4Q/8U8H+oSbS8n7YrHwQh7v10MSfDhZoW1Gjz1bKFbclFh9srp1blpXY1Fx5n14OXTzG2pKMqfltUquih80XUOqdV/QPeodc1sao+1iym959SyVSjtKS8XXQZSkchnl/wA6A+K7xU61e3BUPxI4rrmVRw5sTdZlxv/mfmq0/NXRALpqDq7MtpkAXIzNI5YlRH9Q7V63XmlE4cz/0B/+s+xU4By5JhEVj5biL9xaAy1/CkoJwf7NZXpUjEz1T14NrGJzPC2ig9DVCbThMiuN6ajqCE7ZggGFBmzBaw63wbhfZmAcOR9arfuMYo1shtwVxHSpF+FZWlbhaFsS0mKH4Q3E1QK9OUqU1o7eL6iu23dz9BLPJYSgxPsFKXEffUyXW7ScJRpZEtbfdcSntK4IlHXcac7vU6mqn3F8FDWYHGaGaceNy0iGLqIXhyr0FkMKCumZK9lVuPei5uNaaNNbs96PiBoJX17wSYHeT4qo9rFMIOw+8OQYjINyMvsPWXXAM1OOuoQ3j5kjn4eDF4RKIk+duShY4r6Z/zU4d8C3VIKq7m3/UBeAq7lC9swrqED40jdS/QxrEcDaDR+9Ibc/vIiLXGtd5oSiBQLeiqs9r+G5BR6ynUNV1kf+Ye6bnEcX/H1LQWuOUrTOegQnK6Ik=
+  - stage: Deploy to Production
+    <<: *deploy_lambda_stage
+    env:
+      - TF_WORKSPACE=production
+      - secure: yhzYA58vvyOYm2q9DIEOIGn7JRegpy1vlCtDkQRv/bGXygZ8fotmgvi/fot2GFEKnBrnrFirKCeNhQeNadKUK7rpPmrTLUkrougpr5qIC2ZijLgPnJsK+g5MWNF4VUDX33WbRKYsSI5nTHnoSNir8dK7DyopxIvpVnPoCGvGOI60MKJ2Ff0ak9BoZQyrkd8RG4pfqDP/esNte5KkzXLB/OYw4VcDrP6WFO+q4NPmRroc0PNN3jHRjdHqCY9lHebQfY5W63obYaskJthspu3KEKluvHHNnjsWaUsVF7FBNkMKJVg6MloMzS6uh5rzUF0vbJEWqIzQjP2KuXMO1KBNG9WpikH1JkXxsrJJyiuJWtbEXOeDjljJBGVK+ZK4lhpZwCfblXniT4nuHKogKeu4cPcJ0eN1cuXqi1+fAtr2BUPi1lC78m5jfFCYUpc0X8gnlCKPwT6kMMOrK5bQIYl9iYX/D0UOhJlKEnnbwajDl91wLt1F+DjG27rASzaNJVV3Exp0MlW3toqxXKoKH3E0hrz66upqRZxwjZP9W10xrmR96qZ8pNsFg/+vzblEIOGmJupnM7hkm+lQGkV1Zh9garjii1kuPbY5pMneth7Zq3xCql1qS+akBS6p35R4O6qPSSheZ6NsQgI5IYOR7A+bYSb6HyzGaWwGHExXpYL2Tls=
