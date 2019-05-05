@@ -28,24 +28,23 @@ addons:
     token:
       secure: c5v4OvSRZ7D5z00vE03z/ZvmB7jgf0GZUdRs7C4YZdW1CgxtQkg7pOdIxNO2P01n+awxXFQLgdNQYiLtoJzmGFDVdq+Jdxfp5eplnXMN3M8PC3TwuvZJRdQU3w6ar0dW2sfJAgq3WgCPbfN/9S27vsZaYUSsREox6mVJi4PiKUw4U2P767w8SolpfE6NV3MUnbzdLAtVgV5nn/4Q22T5BAEp6bM6gvPfJdPhfCYqKFysTf/ViZiWP5jfud2rbmmn+Ply7uZ5auoyj2t/nAQiK1uIr8qzvk7A2PRw5HggEgSGMIjTqGzG5ie0tSMr9INdAEUsVNDuVdGNq2/yUR+FQVDyJqbsPIhhwDIiUDncgXPZ/3F7e+2ySqbSR7ljfhjroIjj62Gwq8lBZvQYjURvZUmR6Td0YaHWo1mXg4eYOV39ndI1okYRpEForTbweZ+JVTE7IJQmRFJHiXW7BUXr1Joxd4KCvxtwxwhsqXqvg1fn8smtx5QI2d509HehnUA0BHMvzEXlBqPoT4l9H4AjCYJ38SjJIuzgQXfjeA98gICA5wPpfipG0RDSUgiQavPpst8AzhIUTlwTLehf7cd4NhvkDejOyPAZMNLi0yHhxEwoEU7kYU6fiyfBLvIv8FqkZSbakRDdXJlBPGKYl8OCvcR6YPIJ+gTTvLva0QGuORA=
 deploy_lambda: &deploy_lambda
-  deploy:
-    provider: script
-    script: ./terraform apply -backup="-" -input=false -auto-approve -var aws_default_region=${AWS_DEFAULT_REGION}
-      -var lambda_version=${TRAVIS_TAG} -var account_id=${AWS_ACCOUNT_ID} -var operations_account_id=${OPERATIONS_ACCOUNT_ID}
-      -var role_name=${ROLE_NAME} deployment >/dev/null
-    skip_cleanup: true
-    on:
-      repo: bhavikkumar/cloudwatch-log-destination
-      tags: true
-      go: 1.12.x
+  provider: script
+  script: ./terraform apply -backup="-" -input=false -auto-approve -var aws_default_region=${AWS_DEFAULT_REGION}
+    -var lambda_version=${TRAVIS_TAG} -var account_id=${AWS_ACCOUNT_ID} -var operations_account_id=${OPERATIONS_ACCOUNT_ID}
+    -var role_name=${ROLE_NAME} deployment >/dev/null
+  skip_cleanup: true
+  on:
+    repo: bhavikkumar/cloudwatch-log-destination
+    tags: true
+    go: 1.12.x
 deploy_lambda_stage: &deploy_lambda_stage
-  stage: deploy
   script: skip
   before_deploy:
     - ./terraform init -backend-config="bucket=terraform.bhavik.io" -backend-config="region=${AWS_DEFAULT_REGION}"
       -backend-config="dynamodb_table=terraform-state" -backend-config="kms_key_id=${KMS_KEY_ID}"
       -backend-config="role_arn=${ROLE_ARN}" deployment >/dev/null
-  <<: *deploy_lambda
+  deploy:
+    <<: *deploy_lambda
 before_install:
 - wget https://releases.hashicorp.com/terraform/${VERSION}/terraform_${VERSION}_linux_amd64.zip
 - unzip -o terraform_${VERSION}_linux_amd64.zip
@@ -75,14 +74,15 @@ jobs:
         repo: bhavikkumar/cloudwatch-log-destination
         tags: true
         go: 1.12.x
-  - <<: *deploy_lambda_stage
+  - stage: Deploy to Development
+    <<: *deploy_lambda_stage
     env:
     - TF_WORKSPACE=development
     - secure: JwkF+FReR42LjM/azgdNXKMeCa8Kd9LeaBAOyqtmmHXZRVCnskBv/q4cz9x9AueAso3eYRKgicUPg6a1wpcwAZ+LXQmjVKPPh9pXNzt47TsBpE/HCRgqWXLxl/mxMxHTqK67FGGEUeyTDoaQ7A+SyEfOJJstdJsty7OHNF7K3A8h7bb3FXDB2yfAy3fyAn6C5n+MkO3Wa9Ja3g3+ukdPJV45O4dJJ+RKfiHYUnrEaburmKqPmvGbFZxYo6yULSMf9K8sg1V0A2N+94+5R/kbnfoiPJrLAmKunzIlC+A2MtnQgfyiZxJZBHKw+mJoDNQY5TNks7YnViLB+dGsq2JxaHmeLxd5kKRcbB9LzZJ7g6WYQZ9Wt1kTYt3QShZKrz8rSH5vO9OYXclZiYJFuPVtLYm5gRR+EC11tX9V+KFF+MhhSC78ZF0/AhyNYJEhtXAGxnMeT1p1QBUA/A2phooy63UNUa2Y5Jy+AZrxSzNurIpd67NDBDiyJFg/LlUwHlfGWv8A6qqEIeos9NOVrmw/xKIwm9JhVQ50vL9kY7H6w/ICWT8ZFUrG1Zkuv30Ny8pTTrm/Ta9+fMbI2bpq5Duv56HuvaBl2q7NLF5pb3Osy5nPoxBhIl3fEuexKA7oXbzDdQcXfyXcwo9XIFccmscGXDNKjpdOnXLrp+If7z4LFWA=
-    name: Deploy to Development
     go: 1.12.x
     script: skip
-    <<: *deploy_lambda
+    deploy:
+      <<: *deploy_lambda
       on:
         all_branches: true
         go: 1.12.x
