@@ -28,7 +28,7 @@ addons:
       secure: c5v4OvSRZ7D5z00vE03z/ZvmB7jgf0GZUdRs7C4YZdW1CgxtQkg7pOdIxNO2P01n+awxXFQLgdNQYiLtoJzmGFDVdq+Jdxfp5eplnXMN3M8PC3TwuvZJRdQU3w6ar0dW2sfJAgq3WgCPbfN/9S27vsZaYUSsREox6mVJi4PiKUw4U2P767w8SolpfE6NV3MUnbzdLAtVgV5nn/4Q22T5BAEp6bM6gvPfJdPhfCYqKFysTf/ViZiWP5jfud2rbmmn+Ply7uZ5auoyj2t/nAQiK1uIr8qzvk7A2PRw5HggEgSGMIjTqGzG5ie0tSMr9INdAEUsVNDuVdGNq2/yUR+FQVDyJqbsPIhhwDIiUDncgXPZ/3F7e+2ySqbSR7ljfhjroIjj62Gwq8lBZvQYjURvZUmR6Td0YaHWo1mXg4eYOV39ndI1okYRpEForTbweZ+JVTE7IJQmRFJHiXW7BUXr1Joxd4KCvxtwxwhsqXqvg1fn8smtx5QI2d509HehnUA0BHMvzEXlBqPoT4l9H4AjCYJ38SjJIuzgQXfjeA98gICA5wPpfipG0RDSUgiQavPpst8AzhIUTlwTLehf7cd4NhvkDejOyPAZMNLi0yHhxEwoEU7kYU6fiyfBLvIv8FqkZSbakRDdXJlBPGKYl8OCvcR6YPIJ+gTTvLva0QGuORA=
 deploy_lambda: &deploy_lambda
   provider: script
-  script: cd deployment && terraform apply -backup="-" -input=false -auto-approve -var aws_default_region=${AWS_DEFAULT_REGION} -var lambda_version=${TRAVIS_TAG} -var account_id=${AWS_ACCOUNT_ID} -var operations_account_id=${OPERATIONS_ACCOUNT_ID} -var role_name=${ROLE_NAME} >/dev/null
+  script: terraform apply -backup="-" -input=false -auto-approve -var aws_default_region=${AWS_DEFAULT_REGION} -var lambda_version=${TRAVIS_TAG} -var account_id=${AWS_ACCOUNT_ID} -var operations_account_id=${OPERATIONS_ACCOUNT_ID} -var role_name=${ROLE_NAME} >/dev/null
   skip_cleanup: true
   on:
     repo: bhavikkumar/cloudwatch-log-destination
@@ -42,7 +42,8 @@ deploy_lambda_stage: &deploy_lambda_stage
     - wget https://releases.hashicorp.com/terraform/${VERSION}/terraform_${VERSION}_linux_amd64.zip
     - unzip -o terraform_${VERSION}_linux_amd64.zip -d $HOME/bin
     - chmod +x $HOME/bin/terraform
-    - cd deployment && terraform init -backend-config="bucket=terraform.bhavik.io" -backend-config="region=${AWS_DEFAULT_REGION}" -backend-config="dynamodb_table=terraform-state" -backend-config="kms_key_id=${KMS_KEY_ID}" -backend-config="role_arn=${ROLE_ARN}" >/dev/null
+    - cd deployment
+    - terraform init -backend-config="bucket=terraform.bhavik.io" -backend-config="region=${AWS_DEFAULT_REGION}" -backend-config="dynamodb_table=terraform-state" -backend-config="kms_key_id=${KMS_KEY_ID}" -backend-config="role_arn=${ROLE_ARN}" >/dev/null
   deploy:
     <<: *deploy_lambda
 install:
